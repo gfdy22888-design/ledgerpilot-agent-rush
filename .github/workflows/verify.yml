@@ -12,6 +12,8 @@ jobs:
           node-version: 24
       - run: npm run check
       - run: npm test
+      - name: Check VM bootstrap syntax
+        run: bash -n deploy/bootstrap-ubuntu.sh
       - name: Build production image
         run: docker build -t ledgerpilot:ci .
       - name: Check container HTTP workflow
