@@ -1,0 +1,7 @@
+.git
+.env
+data
+artifacts
+test
+submission
+node_modules

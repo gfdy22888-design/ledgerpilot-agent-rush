@@ -1,0 +1,12 @@
+{
+  "project": "LedgerPilot",
+  "preparationDate": "2026-11-02",
+  "localApplication": "Six automated tests pass; browser review and export confirmation exercised",
+  "containerBuild": "CI verification pending",
+  "vultrDeployment": "Not deployed",
+  "liveInference": "Not configured",
+  "githubRepository": "https://github.com/gfdy22888-design/ledgerpilot-agent-rush",
+  "publicDemoUrl": null,
+  "recordedDemoVideo": null,
+  "submitted": false
+}

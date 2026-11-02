@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtempSync,rmSync} from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {createApp} from '../server.mjs';
+test('real HTTP flow: origin guard, session isolation, hold gate, consent and persistence',async t=>{
+  const dir=mkdtempSync(path.join(os.tmpdir(),'ledgerpilot-test-'));const origin='http://127.0.0.1:4173';
+  let app=createApp({dataDir:dir,origin});await new Promise(r=>app.listen(0,'127.0.0.1',r));let base=`http://127.0.0.1:${app.address().port}`;
+  t.after(async()=>{await new Promise(r=>app.close(r));rmSync(dir,{recursive:true,force:true});});
+  const first=await fetch(base+'/api/state'),cookie=first.headers.get('set-cookie').split(';')[0];
+  const post=(p,body,originHeader=origin)=>fetch(base+p,{method:'POST',headers:{cookie,Origin:originHeader,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  assert.equal((await post('/api/run',{demo:true},'https://evil.example')).status,403);
+  assert.equal((await post('/api/run',null)).status,400);
+  assert.equal((await post('/api/run',[])).status,400);
+  assert.equal((await post('/api/run',{dataset:{}})).status,403);
+  assert.equal((await post('/api/run',{demo:true})).status,202);
+  let current;for(let i=0;i<25;i++){current=await(await fetch(base+'/api/state',{headers:{cookie}})).json();if(current.status==='complete')break;await new Promise(r=>setTimeout(r,20));}
+  assert.equal(current.status,'complete');assert.equal(current.result.totals.heldCount,5);
+  assert.equal((await post('/api/run',{demo:true})).status,429);
+  assert.equal((await(await fetch(base+'/api/state')).json()).result,null);
+  assert.equal((await post('/api/review',{id:'INV-1002',decision:'approved'})).status,409);
+  assert.equal((await post('/api/export',{confirm:true})).status,409);
+  assert.equal((await post('/api/review',{id:'INV-1001',decision:'approved'})).status,200);
+  assert.equal((await post('/api/export',{confirm:false})).status,400);
+  const csv=await(await post('/api/export',{confirm:true})).text();assert.match(csv,/INV-1001/);assert.doesNotMatch(csv,/INV-1002/);
+  await new Promise(r=>app.close(r));app=createApp({dataDir:dir,origin});await new Promise(r=>app.listen(0,'127.0.0.1',r));base=`http://127.0.0.1:${app.address().port}`;
+  const restored=await(await fetch(base+'/api/state',{headers:{cookie}})).json();assert.equal(restored.result.cases[0].decision,'approved');assert.equal(restored.audit.at(-1).action,'review_exported');
+  assert.equal((await fetch(base+'/.env')).status,404);assert.equal((await fetch(base+'/data/')).status,404);
+});

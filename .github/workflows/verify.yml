@@ -1,0 +1,30 @@
+name: Verify application and container
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm run check
+      - run: npm test
+      - name: Build production image
+        run: docker build -t ledgerpilot:ci .
+      - name: Check container HTTP workflow
+        shell: bash
+        run: |
+          docker run -d --name ledgerpilot-ci --read-only --cap-drop ALL --security-opt no-new-privileges --tmpfs /tmp:size=16m -v ledgerpilot-ci-data:/app/data -p 127.0.0.1:4173:4173 -e PUBLIC_ORIGIN=http://127.0.0.1:4173 ledgerpilot:ci
+          trap 'docker logs ledgerpilot-ci; docker rm -f ledgerpilot-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:4173/healthz; then break; fi
+            sleep 1
+          done
+          node scripts/container-smoke.mjs
+      - name: Validate Compose configuration
+        run: |
+          cp .env.example .env
+          APP_DOMAIN=ledgerpilot.example docker compose config --quiet

@@ -1,0 +1,6 @@
+.env
+data/
+node_modules/
+*.log
+artifacts/*.webm
+artifacts/*.mp4
