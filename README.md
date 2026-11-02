@@ -63,7 +63,9 @@ See [deployment instructions](deploy/README.md). Set the model to an ID returned
 
 ## Submission materials
 
-`submission/entry.md` contains the English submission draft. `submission/demo-script.md` contains the planned 3-4 minute walkthrough. `submission/status.json` distinguishes prepared, verified and outstanding items. The PDF pitch is a preparation draft until hosting and a live model run are verified. No contest submission or registration success is claimed.
+`submission/ready-to-paste.md` and `submission/fields.json` contain form text checked against the standard character limits; the final event form takes priority. `submission/entry.md` keeps extended narrative notes. `submission/demo-script.md` gives the actual-app recording sequence, and `submission/narration-en.md` contains the ready-to-read English narration. `submission/status.json` distinguishes prepared, verified and outstanding items.
+
+`artifacts/LedgerPilot_pitch_v2.pdf` is a nine-page preparation pitch using actual local screenshots, source-derived sample figures and verified CI results. `artifacts/LedgerPilot_cover_1600x900.png` is a 16:9 cover; `artifacts/LedgerPilot_cover_editable.svg` is its editable vector source. Regenerate these with `scripts/build_submission_materials.py` using Python, ReportLab, pypdf, pypdfium2, Pillow and the Windows Segoe UI fonts. The final pitch still needs its real public URL and deployed-state update. No contest submission or registration approval is claimed.
 
 Preparation began on **2 November 2026, Asia/Singapore**, before the event's advertised 3-8 November build period. Disclose this history and check the final event-specific eligibility rules; do not represent all work as created during the event. The browser event schedule currently shows kickoff at **4 November 00:00** and submission close at **9 November 07:00**, Asia/Singapore. Recheck the live event schedule before submitting.
 

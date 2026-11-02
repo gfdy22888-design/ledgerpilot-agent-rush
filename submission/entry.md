@@ -1,4 +1,6 @@
-# Submission draft - LedgerPilot
+# Extended narrative notes - LedgerPilot
+
+For the actual form, use [ready-to-paste.md](ready-to-paste.md) or [fields.json](fields.json). Those fields have validated character counts. The longer narrative below supplies background and should not be pasted wholesale into a field with a 2,000-character limit.
 
 **Title:** LedgerPilot: Procurement Reconciled
 
@@ -38,6 +40,6 @@ The differentiation is an inspectable workflow: receipt allocation, deterministi
 - Vultr-hosted public application URL: pending
 - Verified deployed commit and model ID: pending
 - Recorded MP4/MOV walkthrough: pending
-- PDF pitch: prepared locally; refresh after deployment verification
-- Team registration: screening form submitted per account owner; approval unverified. Discord connection unverified.
+- PDF pitch: nine-page v2 prepared locally; refresh after deployment verification
+- Team registration and organizer approval: confirm before final submission
 - Final submission receipt: pending

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1280 720">
+<rect width="1280" height="720" fill="#F5F7F0"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<text x="64" y="40" font-size="13" font-weight="400" fill="#64776A">LEDGERPILOT / AGENT RUSH / CHALLENGE 2</text>
+<text x="64" y="116" font-size="43" font-weight="700" fill="#203C31">LedgerPilot</text>
+<text x="64" y="224" font-size="58" font-weight="700" fill="#203C31">Procurement, reconciled.</text>
+<text x="64" y="304" font-size="33" font-weight="400" fill="#203C31">Source evidence behind every exception.</text>
+<text x="64" y="351" font-size="33" font-weight="400" fill="#203C31">A human decision before every export.</text>
+<rect x="64" y="450" width="360" height="137" rx="16" fill="white"/>
+<text x="88" y="489" font-size="14" font-weight="400" fill="#64776A">SYNTHETIC BATCH</text>
+<text x="88" y="546" font-size="41" font-weight="700" fill="#203C31">$11,050</text>
+<rect x="460" y="450" width="360" height="137" rx="16" fill="white"/>
+<text x="484" y="489" font-size="14" font-weight="400" fill="#64776A">READY FOR REVIEW</text>
+<text x="484" y="546" font-size="41" font-weight="700" fill="#203C31">$4,780</text>
+<rect x="856" y="450" width="360" height="137" rx="16" fill="white"/>
+<text x="880" y="489" font-size="14" font-weight="400" fill="#64776A">HELD FOR CLARIFICATION</text>
+<text x="880" y="546" font-size="41" font-weight="700" fill="#203C31">$6,270</text>
+<text x="64" y="630" font-size="19" font-weight="400" fill="#64776A">8 invoices | 5 purchase orders | 5 receipts | No real transactions</text>
+<text x="64" y="690" font-size="12" font-weight="400" fill="#64776A">Preparation v2 | Local rules mode verified | Vultr deployment and live inference pending</text>
+</g>
+</svg>
