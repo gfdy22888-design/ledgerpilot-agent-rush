@@ -7,8 +7,8 @@ with ZipFile(out,'w',ZIP_DEFLATED) as archive:
     for f in sorted(ROOT.rglob('*')):
         if not f.is_file():continue
         rel=f.relative_to(ROOT)
-        if any(p in {'.git','data','node_modules','__pycache__'} for p in rel.parts):continue
-        if f.name=='.env' or f.suffix in {'.log','.webm','.mp4'}:continue
+        if any(p in {'.git','data','tmp','node_modules','__pycache__'} for p in rel.parts):continue
+        if f.name=='.env' or f.suffix in {'.log','.webm'}:continue
         if f.name.startswith('pitch-page-') or f.name=='pitch-contact-sheet.png':continue
         archive.write(f,Path('ledgerpilot')/rel)
 with ZipFile(out) as archive:

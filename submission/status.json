@@ -2,7 +2,7 @@
   "project": "LedgerPilot",
   "preparationDate": "2026-11-02",
   "localApplication": "Six automated tests pass; browser review and export confirmation exercised",
-  "containerBuild": "CI verification pending",
+  "containerBuild": "Verified: GitHub Actions run 41418693133 built production image, passed restricted-container HTTP reconciliation/review/export workflow and validated Compose",
   "vultrDeployment": "Not deployed",
   "liveInference": "Not configured",
   "githubRepository": "https://github.com/gfdy22888-design/ledgerpilot-agent-rush",

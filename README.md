@@ -4,6 +4,10 @@ Procurement reconciliation with a source reference behind every exception and a 
 
 Built for [Vultr Agent Rush](https://lablab.ai/ai-hackathons/vultr-hackathon), **Challenge 2: Powering the Future of Work**. This is a functional prototype, not an accounting system or payment service.
 
+[Public source](https://github.com/gfdy22888-design/ledgerpilot-agent-rush) · [Automated verification](https://github.com/gfdy22888-design/ledgerpilot-agent-rush/actions)
+
+![Actual local prototype showing a reviewed batch](artifacts/reviewed-dashboard.png)
+
 ## Run locally
 
 Node.js 22 or newer. No package installation is required.
@@ -53,7 +57,7 @@ Held value is the full face value of invoices requiring review. It is not an est
 
 The VM runs the actual HTTP backend, reconciliation engine, session persistence and AI orchestration. The frontend uses this same backend; Vultr is not just a static asset host. Caddy terminates HTTPS and proxies to the app. Docker runs the app as a non-root user with a read-only root filesystem, writable data volume and resource limits.
 
-This checkout has **not yet been deployed to Vultr**. Docker is unavailable on the development host, so the container path is prepared but unverified. A local preview is not evidence of meeting the event's Vultr-hosting requirement.
+This checkout has **not yet been deployed to Vultr**. GitHub Actions successfully built the production Docker image, ran its HTTP reconciliation/review/export workflow under the configured container restrictions, and validated Compose configuration on 2 November 2026. [Verification run](https://github.com/gfdy22888-design/ledgerpilot-agent-rush/actions/runs/41418693133). This confirms container behavior on the CI runner; it does not establish Vultr hosting or live inference.
 
 See [deployment instructions](deploy/README.md). Set the model to an ID returned by the authenticated live Vultr model list rather than assuming a model name. Keep keys in the VM's untracked `.env` file; they never go into frontend code.
 
